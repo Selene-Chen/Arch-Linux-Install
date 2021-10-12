@@ -11,7 +11,7 @@ echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 echo "rootpwd" | passwd --stdin root
 
 pacman -S grub efibootmgr networkmanager
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
 useradd -m selene
