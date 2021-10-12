@@ -8,14 +8,14 @@ echo "arch" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
-echo root:password | rootpwd
+echo "rootpwd" | passwd --stdin root
 
 pacman -S grub efibootmgr networkmanager
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
 useradd -m selene
-echo selene:password | 123
+echo "123" | passwd --stdin selene
 
 # 虚拟机
 # usermod -aG libvirt selene
