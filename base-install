@@ -3,11 +3,11 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
 hwclock --systohc
 sed -i '177s/.//' /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-echo "arch" >> /etc/hostname
-echo "127.0.0.1 localhost" >> /etc/hosts
-echo "::1       localhost" >> /etc/hosts
-echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
+echo 'LANG=en_US.UTF-8' >> /etc/locale.conf
+echo 'arch' >> /etc/hostname
+echo -e '127.0.0.1\tlocalhost' >> /etc/hosts
+echo '::1\t\tlocalhost' >> /etc/hosts
+echo '127.0.1.1\tarch.localdomain arch' >> /etc/hosts
 echo root:rootpwd | chpasswd
 
 pacman -S grub efibootmgr networkmanager intel-ucode
