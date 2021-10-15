@@ -10,11 +10,11 @@ echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
 echo root:rootpwd | chpasswd
 
-pacman -S grub efibootmgr networkmanager intel
+pacman -S grub efibootmgr networkmanager intel-ucode
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
-systemctl enable NetworkManager intel-ucode
+systemctl enable NetworkManager
 
 
 
