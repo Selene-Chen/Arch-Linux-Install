@@ -26,7 +26,7 @@ systemctl enable NetworkManager
 echo root:rootpwd | chpasswd
 
 # 新用户
-pacman -S visudo
+pacman -S sudo
 useradd -m selene
 echo selene:userpwd | chpasswd
 echo 'selene ALL=(ALL) ALL' >> /etc/sudoers.d/selene
