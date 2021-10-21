@@ -13,20 +13,22 @@ echo -e '127.0.0.1\tlocalhost' >> /etc/hosts
 echo '::1\t\tlocalhost' >> /etc/hosts
 echo '127.0.1.1\tarch.localdomain arch' >> /etc/hosts
 
-# 引导
-pacman -S grub efibootmgr intel-ucode
+# 安装引导 
+pacman -S --noconfirm grub efibootmgr intel-ucode
+pacman -S --noconfirm networkmanager
+pacman -S --noconfirm sudo
+
+#配置引导
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
-# 网络管理
-pacman -S networkmanager
+# 开启网络管理服务
 systemctl enable NetworkManager
 
 # root密码
 echo root:rootpwd | chpasswd
 
 # 新用户
-pacman -S sudo
 useradd -m selene
 echo selene:userpwd | chpasswd
 echo 'selene ALL=(ALL) ALL' >> /etc/sudoers.d/selene
