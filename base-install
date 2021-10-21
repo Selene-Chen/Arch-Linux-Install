@@ -12,19 +12,18 @@ echo 'arch' >> /etc/hostname
 echo -e '127.0.0.1\tlocalhost' >> /etc/hosts
 echo '::1\t\tlocalhost' >> /etc/hosts
 echo '127.0.1.1\tarch.localdomain arch' >> /etc/hosts
+# root密码
+echo root:rootpwd | chpasswd
 
 # 安装
 pacman -S --noconfirm grub efibootmgr intel-ucode
 pacman -S --noconfirm networkmanager
 pacman -S --noconfirm sudo
 
-# root密码
-echo root:rootpwd | chpasswd
-
 # 新用户
-useradd -mG wheel selene
+useradd -m selene
+echo 'selene ALL=(ALL) ALL' >> /etc/sudoers.d/selene
 echo selene:userpwd | chpasswd
-echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers.d/selene
 
 # 配置initcpio.conf
 sed -i 's/MODULES=()/MODULES=(btrfs)/' /etc/mkinitcpio.conf
