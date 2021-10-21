@@ -14,7 +14,7 @@ echo '::1\t\tlocalhost' >> /etc/hosts
 echo '127.0.1.1\tarch.localdomain arch' >> /etc/hosts
 
 # 引导
-pacman  
+pacman -S grub efibootmgr intel-ucode
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 
