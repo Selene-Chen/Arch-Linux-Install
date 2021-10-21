@@ -29,8 +29,8 @@ systemctl enable NetworkManager
 echo root:rootpwd | chpasswd
 
 # 新用户
-useradd -m selene
+useradd -mG wheel selene
 echo selene:userpwd | chpasswd
-echo 'selene ALL=(ALL) ALL' >> /etc/sudoers.d/selene
+echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers.d/selene
 
 
